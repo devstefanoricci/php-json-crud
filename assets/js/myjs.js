@@ -5,7 +5,8 @@ $(document).ready(function() {
     function load_data() {
         var seconds = new Date() / 1000;
 
-        $.getJSON("data.json?" + seconds + "", function(data) {
+        //$.getJSON("data.json?" + seconds + "", function(data) {
+        $.getJSON("https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-province.json?" + seconds + "", function(data) {
 
             data.sort(function(a, b) {
 
@@ -17,12 +18,13 @@ $(document).ready(function() {
 
             for (var count = 0; count < data.length; count++) {
                 var sub_array = {
-                    'first_name': data[count].first_name,
-                    'last_name': data[count].last_name,
-                    'gender': data[count].gender,
-                    'age': data[count].age,
-                    'action': '<button type="button" class="btn btn-warning btn-sm edit" data-id="' + data[count].id +
-                        '">Edit</button>&nbsp;<button type="button" class="btn btn-danger btn-sm delete" data-id="' + data[count].id + '">Delete</button>'
+                    'denominazione_provincia': data[count].denominazione_provincia,                    
+                    'codice_provincia': data[count].codice_provincia,
+                    'sigla_provincia': data[count].sigla_provincia,
+                    'totale_casi': data[count].totale_casi,
+                    
+                    'action': '<button type="button" class="btn btn-warning btn-sm edit" data-id="' + data[count].codice_provincia +
+                        '">Edit</button>&nbsp;<button type="button" class="btn btn-danger btn-sm delete" data-id="' + data[count].codice_provincia + '">Delete</button>'
                 };
 
                 data_arr.push(sub_array);
@@ -32,16 +34,16 @@ $(document).ready(function() {
                 data: data_arr,
                 order: [],
                 columns: [{
-                        data: "first_name"
+                        data: "denominazione_provincia"
                     },
                     {
-                        data: "last_name"
+                        data: "codice_provincia"
                     },
                     {
-                        data: "gender"
+                        data: "sigla_provincia"
                     },
                     {
-                        data: "age"
+                        data: "totale_casi"
                     },
                     {
                         data: "action"
@@ -71,7 +73,7 @@ $(document).ready(function() {
     $('#sample_form').on('submit', function(event) {
 
         event.preventDefault();
-
+  
         $.ajax({
             url: "action.php",
             method: "POST",

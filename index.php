@@ -44,10 +44,10 @@
                     <table class="table table-striped table-bordered" id="sample_data">
                         <thead>
                             <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Gender</th>
-                                <th>Age</th>
+                                <th>Denominazione provincia</th>
+                                <th>codice provincia</th>
+                                <th>sigla provincia</th>
+                                <th>totale casi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
